@@ -606,19 +606,12 @@ class _ProgressStep extends StatelessWidget {
           // - First step + vertical: top-left, top-right
           // - Last step + horizontal: top-right, bottom-right
           // - Last step + vertical: bottom-left, bottom-right
-          child: (isFirstStep || isLastStep || isOnlyOneStep) &&
-                  roundedEdges != null
-              ? ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: _radiusTopLeft ? roundedEdges! : Radius.zero,
-                    bottomRight:
-                        _radiusBottomRight ? roundedEdges! : Radius.zero,
-                    bottomLeft: _radiusBottomLeft ? roundedEdges! : Radius.zero,
-                    topRight: _radiusTopRight ? roundedEdges! : Radius.zero,
-                  ),
-                  child: _buildStep,
-                )
-              : _buildStep,
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(
+              roundedEdges ?? Radius.zero,
+            ),
+            child: _buildStep,
+          ),
         ),
       ],
     );
